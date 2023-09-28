@@ -2,6 +2,12 @@ node("x86_runner1"){
     stage('*** Cleanup***') {
         cleanWs()
     }
+    stage('*** Prepare Environment ***') {
+        sh '''#!/bin/bash
+            ls
+            rm -rf ./*
+         '''
+    } 
     stage('*** Check out SCM ***') {
         checkout scm
     } 
