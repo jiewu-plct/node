@@ -15,15 +15,12 @@ node("x86_runner1"){
         sh '''#!/bin/bash
             cat ./jenkinsfile
             as --version
-            wget https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2023.09.13/riscv64-glibc-ubuntu-22.04-gcc-nightly-2023.09.13-nightly.tar.gz
-            tar xzvf riscv64-glibc-ubuntu-22.04-gcc-nightly-2023.09.13-nightly.tar.gz
-            CC=$PWD/riscv/bin/riscv64-unknown-linux-gnu-gcc CXX=$PWD/riscv/bin/riscv64-unknown-linux-gnu-g++ CC_host=gcc CXX_host=g++ ./configure --dest-cpu=riscv64 --cross-compiling --openssl-no-asm
-            make -j 4
+            strings /lib/x86_64-linux-gnu/libc.so.6 |grep GLIBC_
          '''
     }
     stage (' *** Test ***'){
         sh '''#!/bin/bash
-            LD_LIBRARY_PATH=$PWD/riscv/sysroot/lib $PWD/riscv/sysroot/lib/ld-linux-riscv64-lp64d.so.1 ./node -v
+            ls
          '''
     }
 }
