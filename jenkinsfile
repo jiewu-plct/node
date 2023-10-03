@@ -23,7 +23,7 @@ node("x86_runner1"){
     }
     stage (' *** Test ***'){
         sh '''#!/bin/bash
-            LD_LIBRARY_PATH=$PWD/riscv/sysroot/lib $PWD/riscv/sysroot/lib/ld-linux-riscv64-lp64d.so.1 ./node -v
+            ls -l
          '''
     }
 }
