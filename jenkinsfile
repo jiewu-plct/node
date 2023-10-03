@@ -18,7 +18,7 @@ node("x86_runner1"){
             wget https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2021.09.21/riscv64-glibc-ubuntu-20.04-nightly-2021.09.21-nightly.tar.gz
             tar xzvf riscv64-glibc-ubuntu-20.04-nightly-2021.09.21-nightly.tar.gz
             CC=$PWD/riscv/bin/riscv64-unknown-linux-gnu-gcc CXX=$PWD/riscv/bin/riscv64-unknown-linux-gnu-g++ CC_host=gcc CXX_host=g++ ./configure --dest-cpu=riscv64 --cross-compiling --openssl-no-asm
-            make -j 4
+            make -j $(nproc)
          '''
     }
     stage (' *** Test ***'){
